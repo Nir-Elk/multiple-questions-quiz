@@ -2,7 +2,6 @@ import {CHOOSE_ACTION, DONE_ACTION, INIT_ACTION, NEXT_ACTION, PREV_ACTION} from 
 import data from "../data";
 
 export default (state = {currentQuestion: 0, answers: data.questions.map(() => -1), grade: false}, action) => {
-    console.log(action);
     switch (action.type) {
         case CHOOSE_ACTION:
             state.answers[state.currentQuestion] = action.payload;
