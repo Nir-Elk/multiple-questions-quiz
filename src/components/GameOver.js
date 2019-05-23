@@ -1,4 +1,6 @@
 import React from "react";
+import {connect} from "react-redux";
+import {init} from "../actions/quizActions";
 
 class GameOver extends React.Component {
     render() {
@@ -12,4 +14,11 @@ class GameOver extends React.Component {
     }
 }
 
-export default GameOver;
+function mapStateToProps(state) {
+    const {quiz} = state;
+    return {
+        grade: quiz.grade
+    }
+}
+
+export default connect(mapStateToProps, {init})(GameOver);
