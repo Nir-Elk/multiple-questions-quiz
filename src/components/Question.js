@@ -2,6 +2,17 @@ import React from "react";
 import {connect} from "react-redux";
 import {chooseAction} from "../actions/quizActions";
 import data from "../data";
+import styled from "styled-components";
+
+const ChoiceRow = styled.div`
+    cursor: pointer;
+    margin-bottom: 10px;
+`;
+
+export const Title = styled.h5`
+    cursor: default;
+    margin-bottom: 10px;
+`;
 
 class Question extends React.Component {
 
@@ -10,20 +21,23 @@ class Question extends React.Component {
         const current = data.questions[currentQuestion];
         return (
             <>
-                <div>{current.question}</div>
-                <div>
-                    {current.choices.map((choice, index) =>
-                        <div key={choice + index} onClick={() => chooseAction(index)}>
-                            <input
-                                type="radio"
-                                onChange={() => null}
-                                checked={answers[currentQuestion] === index}
-                                name="choice"
-                                value={choice}/>
-                            {choice}
+                <Title>{current.question}</Title>
+                {current.choices.map((choice, index) =>
+                    <ChoiceRow className="input-group" key={choice + index} onClick={() => chooseAction(index)}>
+                        <div className="input-group-prepend">
+                            <div className="input-group-text">
+                                <input
+                                    type="radio"
+                                    onChange={() => null}
+                                    checked={answers[currentQuestion] === index}
+                                    name="choice"
+                                    value={choice}/>
+
+                            </div>
                         </div>
-                    )}
-                </div>
+                        <span type="text" className="form-control">{choice}</span>
+                    </ChoiceRow>
+                )}
             </>
         );
     }

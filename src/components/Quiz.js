@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 class Quiz extends React.Component {
     render() {
-        return this.props.grade === false ? <><Navigation/><Question/></> : <GameOver/>;
+        return this.props.grade === false ? <><Question/><Navigation/></> : <GameOver/>;
     }
 }
 
